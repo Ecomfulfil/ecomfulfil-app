@@ -1,0 +1,5 @@
+[context.dev.environment]
+ROBOTS_FILE = "robots-dev.txt"
+
+[context.production.environment]
+ROBOTS_FILE = "robots-prod.txt"

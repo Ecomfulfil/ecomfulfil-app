@@ -1,0 +1,91 @@
+.card{
+  box-shadow: 0 0 10px rgb(200, 200, 200);
+  border-radius: 12px;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.scroll{
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.glass{
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.swiper{
+  --swiper-navigation-color: '#000';
+}
+
+.swiper1{
+  --swiper-navigation-color: '#fff';
+}
+
+.react-tel-input .special-label{
+  left: 10px !important;
+}
+
+.textfield-container {
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  height: 48px;
+  position: relative;
+  width: 330px;
+  /* Adjust width based on your design requirements */
+}
+
+.textfield-input {
+  font-size: 14px;
+  padding: 10px 15px;
+  width: 300px;
+  border: none;
+  height: 44px;
+  color: #696158;
+  background: transparent;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+  /* Center the input within the container */
+}
+
+.textfield-input:focus {
+  outline: none;
+}
+
+.textfield-label {
+  font-size: 14px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 15px;
+  top: 13px;
+  transition: 0.2s ease all;
+  background-color: white;
+  padding: 0 0.3em;
+  display: flex;
+  justify-content: center;
+}
+
+.textfield-input:focus~.textfield-label,
+.textfield-input:valid~.textfield-label {
+  top: -7px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+}
+
+.textfield-input:required {
+  box-shadow: none;
+}
