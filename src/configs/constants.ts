@@ -2,12 +2,9 @@ export const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const AUTH_URL = `/v1/auth`;
 export const USERS_URL = `/v1/users`;
-export const STORES_URL = `/v1/stores`;
-export const CATEGORIES_URL = `/v1/categories`;
-export const ITEMS_URL = `/v1/items`;
+export const PROMO_CODES_URL = `/v1/promo-codes`;
 export const ORDERS_URL = `/v1/orders`;
 export const STRIPE_URL = `/v1/stripe`;
-export const SUBSCRIBERS_URL = '/v1/subscribers';
 
 export const cities = [
   { label: 'Los Angeles', value: 'Los Angeles' },
@@ -23,16 +20,6 @@ export const cities = [
 ];
 
 export const states = [{ label: 'California', value: 'CA' }];
-
-export const employmentTypes = [
-  { label: 'Full-Time', value: 'Full-Time' },
-  { label: 'Part-Time', value: 'Part-Time' },
-  { label: 'Contract', value: 'Contract' },
-  { label: 'Temporary', value: 'Temporary' },
-  { label: 'Internship', value: 'Internship' },
-  { label: 'Freelance', value: 'Freelance' },
-  { label: 'Volunteer', value: 'Volunteer' },
-];
 
 export const days = [
   { label: 'Monday', value: 'Monday' },

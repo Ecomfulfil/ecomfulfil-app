@@ -32,7 +32,7 @@ const NavigationLinks = () => (
   <Box
     sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, ml: 3 }}
   >
-    <Button href="/menu" sx={{ color: 'white' }}>
+    <Button href="/orders/create" sx={{ color: 'white' }}>
       Order
     </Button>
   </Box>
@@ -95,7 +95,7 @@ const DrawerContent = ({
   <>
     {!showAccountTab ? (
       <>
-        <MenuItem onClick={() => handleNavigation('/menu')}>
+        <MenuItem onClick={() => handleNavigation('/orders/create')}>
           <Typography fontSize={20}>Menu</Typography>
         </MenuItem>
         <Divider />

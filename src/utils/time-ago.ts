@@ -7,6 +7,5 @@ TimeAgo.addDefaultLocale(en);
 
 export const timeAgo = (date: string) => {
   const t = new TimeAgo('en-US');
-
   return t.format(new Date(date));
 };

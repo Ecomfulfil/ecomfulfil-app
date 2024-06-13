@@ -181,7 +181,7 @@ const CustomField: React.FC<CustomFieldProps> = ({
             label={label}
             placeholder={placeholder}
             type={type}
-            inputProps={inputProps}
+            InputProps={inputProps}
             {...field}
             error={invalid && isTouched}
             multiline={multiline}

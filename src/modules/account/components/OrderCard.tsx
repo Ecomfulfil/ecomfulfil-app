@@ -17,35 +17,52 @@ const OrderCard = ({ order }: OrderCardProps) => {
       }}
     >
       <Card>
-        <Stack style={{ padding: '20px' }} gap={1} flex={1}>
-          <Stack
-            direction="row"
-            justifyContent="space-between"
-            gap={1}
-          >
+        <Stack
+          style={{ padding: '20px' }}
+          gap={1}
+          flex={1}
+          direction="row"
+          justifyContent="space-between"
+        >
+          <Stack gap={1}>
             <Typography
               variant="body1"
               textOverflow="ellipsis"
               overflow="hidden"
               whiteSpace="nowrap"
             >
-              {order.store.name}
+              <strong>Sender: </strong>
+              {order.sender.name}
             </Typography>
-            <Typography variant="body1">${order.total}</Typography>
-          </Stack>
-          <Stack
-            direction="row"
-            justifyContent="space-between"
-            gap={1}
-          >
             <Typography
               variant="caption"
               textOverflow="ellipsis"
               overflow="hidden"
               whiteSpace="nowrap"
             >
-              {toAddressString(order.store.address)}
+              {toAddressString(order.sender.address)}
             </Typography>
+            <br />
+            <Typography
+              variant="body1"
+              textOverflow="ellipsis"
+              overflow="hidden"
+              whiteSpace="nowrap"
+            >
+              <strong>Receiver: </strong>
+              {order.receiver.name}
+            </Typography>
+            <Typography
+              variant="caption"
+              textOverflow="ellipsis"
+              overflow="hidden"
+              whiteSpace="nowrap"
+            >
+              {toAddressString(order.receiver.address)}
+            </Typography>
+          </Stack>
+          <Stack justifyContent="space-between" alignItems="end">
+            <Typography variant="body1">${order.total}</Typography>
             <Typography
               variant="caption"
               textOverflow="ellipsis"
