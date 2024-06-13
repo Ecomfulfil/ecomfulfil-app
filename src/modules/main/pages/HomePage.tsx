@@ -155,7 +155,7 @@ const HomePage = () => {
                       $5 flat shipping all over the USA for up to 30
                       lbs.
                     </Typography>
-                    <Link href="/order" passHref>
+                    <Link href="/orders/create" passHref>
                       <Button variant="contained" color="primary">
                         Order Label
                       </Button>

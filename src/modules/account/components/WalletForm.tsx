@@ -43,7 +43,7 @@ const WalletForm = ({ user }: any) => {
       const res = await createTopupSession({
         amount: data.amount,
       }).unwrap();
-      window.open(res.sessionUrl, '_blank');
+      window.open(res.sessionUrl);
     } catch (err: any) {
       toast.error(err?.data?.message || err.error);
     }

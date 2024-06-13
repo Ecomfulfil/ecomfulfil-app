@@ -14,7 +14,6 @@ export const Footer = () => {
   const { config } = useAuth();
 
   const links = [
-    { href: '/support', text: 'Support' },
     { href: '/privacy-policy', text: 'Privacy Policy' },
     { href: '/terms-of-use', text: 'Terms of Use' },
   ];

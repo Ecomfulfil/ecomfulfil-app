@@ -31,7 +31,7 @@ const NavigationLinks = () => (
     sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, ml: 3 }}
   >
     <Button href="/orders/create" sx={{ color: 'white' }}>
-      Order
+      Order Label
     </Button>
   </Box>
 );

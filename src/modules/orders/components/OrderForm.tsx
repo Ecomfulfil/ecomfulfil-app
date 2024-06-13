@@ -10,16 +10,14 @@ import {
   CardContent,
   CardHeader,
   Grid,
-  IconButton,
   InputAdornment,
   Stack,
-  TextField,
   Typography,
 } from '@mui/material';
 import CustomField from '@/components/common/CustomField';
 import Loader from '@/components/feedback/Loader';
-import { debounce } from 'lodash';
 import { useValidatePromoCodeMutation } from '@/store/promo-code';
+import { useRouter } from 'next/router';
 
 interface Address {
   line1: string;
@@ -79,6 +77,7 @@ const schema = yup.object().shape({
 });
 
 const OrderForm = () => {
+  const router = useRouter();
   const [createOrder, { isLoading }] = useCreateOrderMutation();
   const [
     validatePromoCode,
@@ -91,34 +90,6 @@ const OrderForm = () => {
     formState: { errors },
     watch,
   } = useForm<FormData>({
-    defaultValues: {
-      sender: {
-        name: 'Zubair',
-        company: '',
-        address: {
-          line1: '123',
-          line2: '',
-          postalCode: '54000',
-          state: 'Punjab',
-          city: 'Lahore',
-          country: 'Pakistan',
-        },
-      },
-      receiver: {
-        name: 'Fahad',
-        company: '',
-        address: {
-          line1: '123',
-          line2: '',
-          postalCode: '54000',
-          state: 'Punjab',
-          city: 'Lahore',
-          country: 'Pakistan',
-        },
-      },
-      promoCode: '',
-      weight: 10,
-    },
     resolver: yupResolver(schema),
   });
 
@@ -130,10 +101,11 @@ const OrderForm = () => {
       delete data.length;
       delete data.width;
       delete data.height;
-      await createOrder({
+      const order = await createOrder({
         ...data,
         ...(promoCodeData && { promoCode: promoCodeData.id }),
       }).unwrap();
+      router.replace(`/orders/${order.id}`);
       toast.success('Order created successfully');
     } catch (err: any) {
       toast.error(err?.data?.message || err.error);
@@ -210,7 +182,8 @@ const OrderForm = () => {
                   </Grid>
                   <Grid item md={12} alignContent="center">
                     <Typography variant="body1">
-                      Label Price: {}
+                      Label Price:{' '}
+                      {watchedValues.weight > 30 ? '10' : '5'}
                     </Typography>
                   </Grid>
                 </Grid>
