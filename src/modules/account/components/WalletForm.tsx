@@ -53,7 +53,7 @@ const WalletForm = ({ user }: any) => {
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Card>
         <CardHeader
-          title={`Avalable Balance: ${user?.balance || 0}`}
+          title={`Avalable Balance: $${user?.balance || 0}`}
         />
         <CardContent>
           <Stack gap={1} alignItems="end">

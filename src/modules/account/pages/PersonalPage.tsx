@@ -23,7 +23,7 @@ const PersonalPage = () => {
         }}
         gap={3}
       >
-        {user && <WalletForm />}
+        {user && <WalletForm user={user} />}
         {user && <UserForm user={user} />}
       </Stack>
     </Fragment>
