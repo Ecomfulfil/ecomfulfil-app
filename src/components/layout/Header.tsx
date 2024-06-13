@@ -17,14 +17,12 @@ import { usePopover } from '../hooks/usePopover';
 import { AccountPopover } from './AccountPopover';
 
 const Logo = () => (
-  <Link href="/" passHref>
-    <Typography
-      variant="h4"
-      component="a"
-      sx={{ textDecoration: 'none', color: '#ffc107' }}
-    >
-      Ecomfulfil.
-    </Typography>
+  <Link
+    href="/"
+    passHref
+    style={{ textDecoration: 'none', color: '#ffc107' }}
+  >
+    <Typography variant="h4">Ecomfulfil.</Typography>
   </Link>
 );
 

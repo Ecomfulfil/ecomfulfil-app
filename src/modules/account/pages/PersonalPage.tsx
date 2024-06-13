@@ -4,6 +4,7 @@ import { SplitLayout } from '@/layouts/SplitLayout';
 import Head from 'next/head';
 import UserForm from '../components/UserForm';
 import { useAuth } from '@/hooks/useAuth';
+import WalletForm from '../components/WalletForm';
 
 const PersonalPage = () => {
   const { user } = useAuth();
@@ -22,9 +23,7 @@ const PersonalPage = () => {
         }}
         gap={3}
       >
-        <Typography variant="h5">
-          {user?.firstName} {user?.lastName}
-        </Typography>
+        {user && <WalletForm />}
         {user && <UserForm user={user} />}
       </Stack>
     </Fragment>

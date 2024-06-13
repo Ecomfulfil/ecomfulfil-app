@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import { useUpdateUserMutation } from '@/store/user';
 import { toast } from 'react-toastify';
 import {
   Button,
@@ -15,52 +14,36 @@ import {
 } from '@mui/material';
 import CustomField from '@/components/common/CustomField';
 import Loader from '@/components/feedback/Loader';
-
-interface UserFormProps {
-  user: any;
-}
+import { useCreateTopupSessionMutation } from '@/store/stripe';
 
 interface FormData {
-  name: string;
-  phone: string;
-  dateOfBirth: string;
+  amount: string;
 }
 
 const schema = yup.object().shape({
-  name: yup.string().required('Name is required'),
-  phone: yup.string().required('Phone is required'),
-  dateOfBirth: yup.string().required('Date of Birth is required'),
+  amount: yup.string().required('Amount is required'),
 });
 
-const formFields = [
-  { name: 'name', label: 'Name *' },
-  { name: 'phone', label: 'Phone *', type: 'phone' },
-  { name: 'dateOfBirth', label: 'Date of Birth *', type: 'date' },
-];
+const formFields = [{ name: 'amount', label: 'Amount *' }];
 
-const UserForm = ({ user }: UserFormProps) => {
-  const [updateUser, { isLoading }] = useUpdateUserMutation();
+const WalletForm = ({ user }: any) => {
+  const [createTopupSession, { isLoading }] =
+    useCreateTopupSessionMutation();
 
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    defaultValues: {
-      name: user.name ?? '',
-      phone: user.phone ?? '',
-      dateOfBirth: user.dateOfBirth ?? '',
-    },
     resolver: yupResolver(schema),
   });
 
   const onSubmit = async (data: FormData) => {
     try {
-      await updateUser({
-        name: data.name,
-        phone: `+${data.phone}`,
-        dateOfBirth: data.dateOfBirth,
-      });
+      const res = await createTopupSession({
+        amount: data.amount,
+      }).unwrap();
+      window.open(res.sessionUrl, '_blank');
     } catch (err: any) {
       toast.error(err?.data?.message || err.error);
     }
@@ -69,9 +52,11 @@ const UserForm = ({ user }: UserFormProps) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Card>
-        <CardHeader title={`Update Details`} />
+        <CardHeader
+          title={`Avalable Balance: ${user?.balance || 0}`}
+        />
         <CardContent>
-          <Stack gap={2} alignItems="end">
+          <Stack gap={1} alignItems="end">
             {formFields.map((field: any, i: any) => (
               <CustomField
                 key={i}
@@ -85,7 +70,7 @@ const UserForm = ({ user }: UserFormProps) => {
               variant="contained"
               disabled={isLoading}
             >
-              {isLoading ? <Loader /> : 'Update'}
+              {isLoading ? <Loader /> : 'Topup'}
             </Button>
           </Stack>
         </CardContent>
@@ -94,4 +79,4 @@ const UserForm = ({ user }: UserFormProps) => {
   );
 };
 
-export default UserForm;
+export default WalletForm;
