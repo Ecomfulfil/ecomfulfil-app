@@ -2,10 +2,10 @@ import React, { Fragment } from 'react';
 import { Stack } from '@mui/material';
 import { SplitLayout } from '@/layouts/SplitLayout';
 import Head from 'next/head';
-import UserForm from '../components/UserForm';
 import { useAuth } from '@/hooks/useAuth';
+import WalletForm from '../components/WalletForm';
 
-const PersonalPage = () => {
+const WalletPage = () => {
   const { user } = useAuth();
 
   return (
@@ -22,16 +22,16 @@ const PersonalPage = () => {
         }}
         gap={3}
       >
-        {user && <UserForm user={user} />}
+        {user && <WalletForm user={user} />}
       </Stack>
     </Fragment>
   );
 };
 
-PersonalPage.getLayout = (page: any) => (
-  <SplitLayout title="Personal">{page}</SplitLayout>
+WalletPage.getLayout = (page: any) => (
+  <SplitLayout title="Wallet">{page}</SplitLayout>
 );
 
-PersonalPage.authGuard = true;
+WalletPage.authGuard = true;
 
-export default PersonalPage;
+export default WalletPage;

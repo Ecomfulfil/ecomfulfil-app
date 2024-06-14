@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -18,6 +18,7 @@ import CustomField from '@/components/common/CustomField';
 import Loader from '@/components/feedback/Loader';
 import { useValidatePromoCodeMutation } from '@/store/promo-code';
 import { useRouter } from 'next/router';
+import { useAuth } from '@/hooks/useAuth';
 
 interface Address {
   line1: string;
@@ -78,6 +79,7 @@ const schema = yup.object().shape({
 
 const OrderForm = () => {
   const router = useRouter();
+  const { user } = useAuth();
   const [createOrder, { isLoading }] = useCreateOrderMutation();
   const [
     validatePromoCode,
@@ -127,9 +129,18 @@ const OrderForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Stack gap={5}>
-        <Typography variant="h1" color="primary">
-          Order Label
-        </Typography>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Typography variant="h2" color="primary">
+            Order Label
+          </Typography>
+          <Typography variant="h6">
+            Avalable Balance: ${user?.balance || 0}
+          </Typography>
+        </Stack>
         <Grid container spacing={3}>
           <Grid item xs={12} md={12}>
             <Card>

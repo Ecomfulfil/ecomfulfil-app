@@ -130,6 +130,9 @@ const DrawerContent = ({
         >
           <Typography fontSize={20}>Personal info</Typography>
         </MenuItem>
+        <MenuItem onClick={() => handleNavigation('/account/wallet')}>
+          <Typography fontSize={20}>Wallet</Typography>
+        </MenuItem>
         <Divider />
         <MenuItem onClick={handleSignOut}>
           <Typography fontSize={20}>Sign out</Typography>

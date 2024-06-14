@@ -41,6 +41,9 @@ export const AccountPopover = (props: any) => {
         <MenuItem onClick={() => router.replace('/account/personal')}>
           Personal info
         </MenuItem>
+        <MenuItem onClick={() => router.replace('/account/wallet')}>
+          Wallet
+        </MenuItem>
         <Divider />
         <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
       </MenuList>
