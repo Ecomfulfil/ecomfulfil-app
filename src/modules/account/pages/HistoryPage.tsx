@@ -36,7 +36,7 @@ const HistoryPage = () => {
           sx={{
             paddingY: 5,
             paddingX: { xs: '10%', md: '20%' },
-            minHeight: '75vh',
+            minHeight: '88vh',
           }}
         >
           {!data || data.results.length < 1 ? (

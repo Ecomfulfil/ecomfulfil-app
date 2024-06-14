@@ -12,6 +12,7 @@ export const SplitLayout = (props: any) => {
       <Grid container sx={{ mt: 12 }}>
         <Grid
           item
+          xs={12}
           md={4}
           display="flex"
           justifyContent="center"
@@ -22,9 +23,10 @@ export const SplitLayout = (props: any) => {
         </Grid>
         <Grid
           item
+          xs={12}
           md={8}
           sx={{
-            height: '90vh',
+            height: '88vh',
             overflow: 'auto',
             backgroundColor: '#f9f9f9',
           }}

@@ -94,7 +94,7 @@ const DrawerContent = ({
     {!showAccountTab ? (
       <>
         <MenuItem onClick={() => handleNavigation('/orders/create')}>
-          <Typography fontSize={20}>Menu</Typography>
+          <Typography fontSize={20}>Order Label</Typography>
         </MenuItem>
         <Divider />
         {user ? (

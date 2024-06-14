@@ -49,7 +49,7 @@ const schema = yup.object().shape({
     name: yup.string().required('Name is required'),
     company: yup.string(),
     address: yup.object().shape({
-      line1: yup.string().required('Line 1 is required'),
+      line1: yup.string().required('Line1 is required'),
       line2: yup.string(),
       postalCode: yup.string().required('Postal code is required'),
       state: yup.string().required('State is required'),
@@ -61,7 +61,7 @@ const schema = yup.object().shape({
     name: yup.string().required('Name is required'),
     company: yup.string(),
     address: yup.object().shape({
-      line1: yup.string().required('Line 1 is required'),
+      line1: yup.string().required('Line1 is required'),
       line2: yup.string(),
       postalCode: yup.string().required('Postal code is required'),
       state: yup.string().required('State is required'),
@@ -101,12 +101,12 @@ const OrderForm = () => {
       delete data.length;
       delete data.width;
       delete data.height;
-      const order = await createOrder({
+      await createOrder({
         ...data,
         ...(promoCodeData && { promoCode: promoCodeData.id }),
       }).unwrap();
-      router.replace(`/orders/${order.id}`);
       toast.success('Order created successfully');
+      router.replace(`/account/history`);
     } catch (err: any) {
       toast.error(err?.data?.message || err.error);
     }
@@ -131,7 +131,7 @@ const OrderForm = () => {
           Order Label
         </Typography>
         <Grid container spacing={3}>
-          <Grid item md={12}>
+          <Grid item xs={12} md={12}>
             <Card>
               <CardHeader
                 title="Service Details"
@@ -146,7 +146,7 @@ const OrderForm = () => {
                   spacing={1}
                   sx={{ width: { xs: '100%', md: '50%' } }}
                 >
-                  <Grid item md={12}>
+                  <Grid item xs={12}>
                     <CustomField
                       name="weight"
                       label="Weight (70.00 lbs max)"
@@ -156,7 +156,7 @@ const OrderForm = () => {
                       errors={errors}
                     />
                   </Grid>
-                  <Grid item md={12}>
+                  <Grid item xs={12}>
                     <CustomField
                       name="promoCode"
                       label="Promo Code (optional)"
@@ -180,10 +180,11 @@ const OrderForm = () => {
                       }}
                     />
                   </Grid>
-                  <Grid item md={12} alignContent="center">
+                  <Grid item xs={12} alignContent="center">
                     <Typography variant="body1">
                       Label Price:{' '}
-                      {watchedValues.weight > 30 ? '10' : '5'}
+                      {(watchedValues.weight > 30 ? 10 : 5) -
+                        (promoCodeData?.amount || 0)}
                     </Typography>
                   </Grid>
                 </Grid>
@@ -201,7 +202,7 @@ const OrderForm = () => {
               />
               <CardContent>
                 <Grid container spacing={1}>
-                  <Grid item md={6}>
+                  <Grid item xs={12} md={6}>
                     <CustomField
                       name="length"
                       label="Length (in)"
@@ -211,7 +212,7 @@ const OrderForm = () => {
                       errors={errors}
                     />
                   </Grid>
-                  <Grid item md={6}>
+                  <Grid item xs={12} md={6}>
                     <CustomField
                       name="width"
                       label="Width (in)"
@@ -221,7 +222,7 @@ const OrderForm = () => {
                       errors={errors}
                     />
                   </Grid>
-                  <Grid item md={6}>
+                  <Grid item xs={12} md={6}>
                     <CustomField
                       name="height"
                       label="Height (in)"
@@ -235,7 +236,7 @@ const OrderForm = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <UserDetails
               title="Sender Details"
               control={control}
@@ -243,7 +244,7 @@ const OrderForm = () => {
               userPrefix="sender"
             />
           </Grid>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <UserDetails
               title="Receiver Details"
               control={control}
@@ -256,11 +257,7 @@ const OrderForm = () => {
           type="submit"
           variant="contained"
           size="large"
-          sx={{
-            position: 'fixed',
-            bottom: 50,
-            right: 50,
-          }}
+          sx={{ marginLeft: 'auto' }}
           disabled={isLoading}
         >
           {isLoading ? <Loader /> : 'Continue'}
@@ -290,7 +287,7 @@ const UserDetails = ({
     />
     <CardContent>
       <Grid container spacing={1}>
-        <Grid item md={6}>
+        <Grid item xs={12} md={6}>
           <CustomField
             name={`${userPrefix}.name`}
             label="Name*"
@@ -298,7 +295,7 @@ const UserDetails = ({
             errors={errors}
           />
         </Grid>
-        <Grid item md={6}>
+        <Grid item xs={12} md={6}>
           <CustomField
             name={`${userPrefix}.company`}
             label="Company"
@@ -306,7 +303,7 @@ const UserDetails = ({
             errors={errors}
           />
         </Grid>
-        <Grid item md={6}>
+        <Grid item xs={12} md={6}>
           <CustomField
             name={`${userPrefix}.address.line1`}
             label="Line1*"
@@ -314,7 +311,7 @@ const UserDetails = ({
             errors={errors}
           />
         </Grid>
-        <Grid item md={6}>
+        <Grid item xs={12} md={6}>
           <CustomField
             name={`${userPrefix}.address.line2`}
             label="Line2"
@@ -322,7 +319,7 @@ const UserDetails = ({
             errors={errors}
           />
         </Grid>
-        <Grid item md={6}>
+        <Grid item xs={12} md={6}>
           <CustomField
             name={`${userPrefix}.address.postalCode`}
             label="Postal Code*"
@@ -330,7 +327,7 @@ const UserDetails = ({
             errors={errors}
           />
         </Grid>
-        <Grid item md={6}>
+        <Grid item xs={12} md={6}>
           <CustomField
             name={`${userPrefix}.address.state`}
             label="State*"
@@ -338,7 +335,7 @@ const UserDetails = ({
             errors={errors}
           />
         </Grid>
-        <Grid item md={6}>
+        <Grid item xs={12} md={6}>
           <CustomField
             name={`${userPrefix}.address.city`}
             label="City*"
@@ -346,7 +343,7 @@ const UserDetails = ({
             errors={errors}
           />
         </Grid>
-        <Grid item md={6}>
+        <Grid item xs={12} md={6}>
           <CustomField
             name={`${userPrefix}.address.country`}
             label="Country*"

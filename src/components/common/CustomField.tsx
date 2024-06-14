@@ -192,6 +192,22 @@ const CustomField: React.FC<CustomFieldProps> = ({
     }
   };
 
+  const getNestedErrorMessage = (errors: any, path: any) => {
+    const keys = path.split('.');
+
+    let current = errors;
+    for (const key of keys) {
+      if (!current || !current[key]) {
+        return '';
+      }
+      current = current[key];
+    }
+
+    return current.message;
+  };
+
+  const errorMessage = getNestedErrorMessage(errors, name) || '';
+
   return (
     <FormControl
       fullWidth
@@ -202,9 +218,7 @@ const CustomField: React.FC<CustomFieldProps> = ({
       hidden={hidden}
     >
       {renderInputField()}
-      {errors?.[name] && (
-        <FormHelperText error>{errors[name].message}</FormHelperText>
-      )}
+      <FormHelperText error>{errorMessage}</FormHelperText>
     </FormControl>
   );
 };

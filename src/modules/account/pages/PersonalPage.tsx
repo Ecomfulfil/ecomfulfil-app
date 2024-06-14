@@ -19,7 +19,7 @@ const PersonalPage = () => {
         sx={{
           paddingY: 5,
           paddingX: { xs: '10%', md: '20%' },
-          minHeight: '90vh',
+          minHeight: '80vh',
         }}
         gap={3}
       >
